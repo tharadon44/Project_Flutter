@@ -159,7 +159,7 @@ class InsertPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('เพิ่มสินค้า'),
+        title: const Text('เพิ่มอุปกรณ์'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -167,7 +167,7 @@ class InsertPage extends StatelessWidget {
           children: [
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ชื่อสินค้า',
+                labelText: 'ชื่ออุปกรณ์',
                 border: OutlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
@@ -175,7 +175,7 @@ class InsertPage extends StatelessWidget {
             const SizedBox(height: 16),
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ประเภทสินค้า',
+                labelText: 'ประเภทอุปกรณ์',
                 border: OutlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
@@ -220,14 +220,14 @@ class DeletePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('ลบสินค้า'),
+        title: const Text('ลบอุปกรณ์'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              'หน้านี้คือหน้าลบสินค้า',
+              'หน้านี้คือหน้าลบอุปกรณ์',
               style: TextStyle(fontSize: 20),
             ),
           ],
@@ -245,7 +245,7 @@ class UpdatePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('แก้ไขสินค้า'),
+        title: const Text('แก้ไขอุปกรณ์'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -253,7 +253,7 @@ class UpdatePage extends StatelessWidget {
           children: [
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ชื่อสินค้า',
+                labelText: 'ชื่ออุปกรณ์',
                 border: OutlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 suffixIcon: Icon(Icons.edit),
@@ -262,7 +262,7 @@ class UpdatePage extends StatelessWidget {
             const SizedBox(height: 16),
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ประเภทสินค้า',
+                labelText: 'ประเภทอุปกรณ์',
                 border: OutlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 suffixIcon: Icon(Icons.edit),

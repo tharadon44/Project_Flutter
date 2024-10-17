@@ -86,8 +86,8 @@ class _UserPageState extends State<UserPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('ยืนยันการลบสินค้า'),
-          content: const Text('คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้?'),
+          title: const Text('ยืนยันการลบอุปกรณ์'),
+          content: const Text('คุณแน่ใจหรือไม่ว่าต้องการลบอุปกรณ์นี้?'),
           actions: <Widget>[
             TextButton(
               child: const Text('ยกเลิก'),
@@ -113,7 +113,7 @@ class _UserPageState extends State<UserPage> {
 
         if (response.statusCode == 200) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('ลบสินค้าสำเร็จ')));
+              .showSnackBar(SnackBar(content: Text('ลบอุปกรณ์สำเร็จ')));
           await _fetchtools();
         } else if (response.statusCode == 401) {
           Navigator.pushNamedAndRemoveUntil(
@@ -123,7 +123,7 @@ class _UserPageState extends State<UserPage> {
         }
       } catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error deleting product: $error')));
+            SnackBar(content: Text('Error deleting tool: $error')));
       }
     }
   }
@@ -173,7 +173,7 @@ class _UserPageState extends State<UserPage> {
                     RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: 'จัดการ',
+                        text: 'TO',
                         style: TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.w900,
@@ -181,7 +181,7 @@ class _UserPageState extends State<UserPage> {
                         ),
                         children: [
                           TextSpan(
-                            text: 'สินค้า',
+                            text: 'OL',
                             style: TextStyle(
                                 color: Color(0xffE85C0D), fontSize: 35),
                           ),
@@ -231,7 +231,7 @@ class _UserPageState extends State<UserPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff821131)),
-                      child: Text('เพิ่มสินค้าใหม่',
+                      child: Text('เพิ่มอุปกรณ์ใหม่',
                           style: TextStyle(color: Colors.white)),
                     ),
                     SizedBox(height: 20),

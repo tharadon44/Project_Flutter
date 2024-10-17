@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:testlab/AddEquipmentPage.dart';
 import 'package:testlab/login_page.dart';
 import 'package:testlab/my_home_page.dart';
-import 'package:testlab/page/insertProduct.dart';
 import 'package:testlab/page/insertool.dart';
 import 'package:testlab/pages/UserPage.dart';
 import 'package:testlab/pages/adminPage.dart';

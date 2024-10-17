@@ -103,7 +103,7 @@ class _EditRoomPageState extends State<EdittoolPage> {
                         ),
                         children: [
                           TextSpan(
-                            text: 'สินค้า',
+                            text: 'อุปกรณ์',
                             style: TextStyle(
                                 color: Color(0xffE85C0D), fontSize: 35),
                           ),

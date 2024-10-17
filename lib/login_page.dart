@@ -16,9 +16,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController =
-      TextEditingController(text: "tai54");
+      TextEditingController(text: "");
   final TextEditingController _passwordController =
-      TextEditingController(text: "1234");
+      TextEditingController(text: "");
 
   void _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  'WELCOME',
+                  'TOOL',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,

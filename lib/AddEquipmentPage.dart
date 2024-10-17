@@ -184,7 +184,7 @@ class _AddEquipmentPageState extends State<AddEquipmentPage> {
                         ),
                         children: [
                           TextSpan(
-                            text: 'สินค้า',
+                            text: 'อุปกรณ์',
                             style: TextStyle(
                                 color: Color(0xffE85C0D), fontSize: 35),
                           ),
@@ -234,7 +234,7 @@ class _AddEquipmentPageState extends State<AddEquipmentPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff821131)),
-                      child: Text('เพิ่มสินค้าใหม่',
+                      child: Text('เพิ่มอุปกรณ์ใหม่',
                           style: TextStyle(color: Colors.white)),
                     ),
                     SizedBox(height: 20),

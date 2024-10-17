@@ -105,7 +105,7 @@ class toolController {
     } catch (error) {
       // Catch and print any errors during the request
       print(error);
-      throw Exception('Failed to insert product: $error');
+      throw Exception('Failed to insert tool: $error');
     }
   }
 

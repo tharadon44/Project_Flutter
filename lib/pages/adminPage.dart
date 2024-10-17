@@ -131,10 +131,6 @@ class _NavigationExampleState extends State<NavigationExample> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.notifications_sharp),
-            label: 'AddtoolPage',
-          ),
-          NavigationDestination(
             icon: Icon(Icons.messenger_sharp),
             label: 'AddEquipmentPage',
           ),

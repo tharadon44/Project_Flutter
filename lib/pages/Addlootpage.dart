@@ -131,14 +131,14 @@ class DeletePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('ลบสินค้า'),
+        title: const Text('ลบอุปกรณ์'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              'หน้านี้คือหน้าลบสินค้า',
+              'หน้านี้คือหน้าลบอุปกรณ์',
               style: TextStyle(fontSize: 20),
             ),
           ],
@@ -156,7 +156,7 @@ class UpdatePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('แก้ไขสินค้า'),
+        title: const Text('แก้ไขอุปกรณ์'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
