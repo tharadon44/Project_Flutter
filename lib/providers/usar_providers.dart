@@ -12,12 +12,12 @@ class UserProvider extends ChangeNotifier {
 
   get userData => null;
 
-  void onLogin(Usermodel userModel ) async {
+  void onLogin(Usermodel userModel) async {
     _user = userModel.user;
     _accessToken = userModel.accessToken;
     _refreshToken = userModel.refreshToken;
     notifyListeners();
-  } 
+  }
 
   void onLogout() {
     _user = null;

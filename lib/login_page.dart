@@ -7,7 +7,7 @@ import 'package:testlab/register_page.dart';
 import 'controllers/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key); 
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -15,8 +15,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController =
+      TextEditingController(text: "tai54");
+  final TextEditingController _passwordController =
+      TextEditingController(text: "1234");
 
   void _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -30,8 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           context.read<UserProvider>().onLogin(userModel);
 
           if (userModel.user?.role == "Admin" ||
-          userModel.user?.role == "admin")
-          {
+              userModel.user?.role == "admin") {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:testlab/controllers/tool_controllers.dart';
 import 'package:testlab/models/product_model.dart';
 import 'package:testlab/models/tool_model.dart';
 import 'package:testlab/widget/custmCliper.dart';
@@ -7,7 +8,7 @@ import 'package:testlab/widget/custmCliper.dart';
 class EdittoolPage extends StatefulWidget {
   final UserTool tool;
 
-  const EdittoolPage({Key? key, required this.tool}) : super(key: key) ;
+  const EdittoolPage({Key? key, required this.tool}) : super(key: key);
 
   @override
   _EditRoomPageState createState() => _EditRoomPageState();
@@ -15,7 +16,8 @@ class EdittoolPage extends StatefulWidget {
 
 class _EditRoomPageState extends State<EdittoolPage> {
   final _formKey = GlobalKey<FormState>();
-  late String dateTime;
+  final toolController _toolController = toolController();
+  // late DateTime dateTime;
   late String timein;
   late String timeout;
   late String toolName;
@@ -28,7 +30,7 @@ class _EditRoomPageState extends State<EdittoolPage> {
   void initState() {
     super.initState();
     // ดึงข้อมูลจาก RoomModel มาแสดงในฟอร์ม
-    dateTime = widget.tool.dateTime as String;
+    // dateTime = widget.tool.dateTime;
     timein = widget.tool.timeIn;
     timeout = widget.tool.timeOut;
     toolName = widget.tool.toolName;
@@ -38,8 +40,14 @@ class _EditRoomPageState extends State<EdittoolPage> {
     adviser = widget.tool.adviser;
   }
 
-  Future<void> _updateRoom(BuildContext context, String roomId) async {
+  Future<void> _updatetool(BuildContext context, String toolID) async {
     // ฟังก์ชันสำหรับการอัปเดตข้อมูลห้อง
+    _toolController
+        .updatetool(context, timein, timeout, toolName, userName, phone,
+            objective, adviser, toolID)
+        .then((response) {
+      print(response.statusCode);
+    });
   }
 
   @override
@@ -107,11 +115,11 @@ class _EditRoomPageState extends State<EdittoolPage> {
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          _buildTextField(
-                            label: 'วันที่',
-                            initialValue: dateTime,
-                            onSaved: (value) => dateTime = value!,
-                          ),
+                          // _buildTextField(
+                          //   label: 'วันที่',
+                          //   initialValue: dateTime,
+                          //   onSaved: (value) => dateTime = value!,
+                          // ),
                           SizedBox(height: 30),
                           _buildTextField(
                             label: 'เวลาเข้า',
@@ -163,7 +171,7 @@ class _EditRoomPageState extends State<EdittoolPage> {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
                                     // Call the update function
-                                    _updateRoom(context, widget.tool.toolName);
+                                    _updatetool(context, widget.tool.id);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -176,7 +184,7 @@ class _EditRoomPageState extends State<EdittoolPage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 24.0, vertical: 12.0),
                                   child: Text(
-                                    'แก้ไข้',
+                                    'แก้ไข',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.white,
@@ -187,7 +195,7 @@ class _EditRoomPageState extends State<EdittoolPage> {
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.pushReplacementNamed(context,
-                                      '/home-+'); // เปลี่ยนไปยังหน้าแสดงสินค้า
+                                      '/home'); // เปลี่ยนไปยังหน้าแสดงสินค้า
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:

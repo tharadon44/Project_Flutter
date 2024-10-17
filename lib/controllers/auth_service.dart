@@ -6,6 +6,7 @@ import 'package:testlab/models/user_models.dart';
 import 'package:testlab/providers/usar_providers.dart';
 import 'package:testlab/varbles.dart';
 import 'package:http/http.dart' as http;
+
 class AuthService {
   // Login method
   Future<Usermodel?> login(String username, String password) async {
@@ -31,7 +32,8 @@ class AuthService {
   }
 
   // Register method
-Future<void> register(String username, String password, String name, String role) async {
+  Future<void> register(
+      String username, String password, String name, String role) async {
     final response = await http.post(
       Uri.parse("$apiURL/api/auth/register"),
       headers: <String, String>{

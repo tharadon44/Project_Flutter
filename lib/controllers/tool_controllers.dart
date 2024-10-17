@@ -40,7 +40,7 @@ class toolController {
       } else {
         throw Exception(
             'Failed to load tools with status code: ${response.statusCode}');
-      } 
+      }
     } catch (err) {
       // If the request failed, throw an error
       print(err);
@@ -50,7 +50,7 @@ class toolController {
 
   Future<http.Response> Inserttool(
       BuildContext context,
-      String dateTime,
+      DateTime dateTime,
       String timeIn,
       String timeOut,
       String toolName,
@@ -59,9 +59,11 @@ class toolController {
       String objective,
       String adviser) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     var accessToken = userProvider.accessToken;
+
     final Map<String, dynamic> InsertData = {
-      "date_time": dateTime,
+      "date_time": DateTime.now().toIso8601String(),
       "time_in": timeIn,
       "time_out": timeOut,
       "tool_name": toolName,
@@ -71,9 +73,13 @@ class toolController {
       "adviser": adviser,
     };
     try {
+      print("--------");
+      print(accessToken);
+      print(InsertData);
       // Make POST request to insert the product
+
       final response = await http.post(
-        Uri.parse("$apiURL/api/tools"), // Replace with the correct API endpoint
+        Uri.parse("$apiURL/api/tool"), // Replace with the correct API endpoint
         headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer $accessToken" // Attach accessToken
@@ -81,13 +87,15 @@ class toolController {
         body: jsonEncode(InsertData),
       );
 
+      print(response.statusCode);
+
       // Handle successful product insertion
       if (response.statusCode == 201) {
         print("Product inserted successfully!");
         return response; // ส่งคืน response เมื่อเพิ่มสินค้าสำเร็จ
       } else if (response.statusCode == 403) {
         await _AuthService.refreshToken(context);
-        accessToken = userProvider.accessToken;
+        // accessToken = userProvider.accessToken;
 
         return await Inserttool(context, dateTime, timeIn, timeOut, toolName,
             userName, phone, objective, adviser);
@@ -96,13 +104,14 @@ class toolController {
       }
     } catch (error) {
       // Catch and print any errors during the request
-      throw Exception('Failed to insert product');
+      print(error);
+      throw Exception('Failed to insert product: $error');
     }
   }
 
   Future<http.Response> updatetool(
       BuildContext context,
-      String dateTime,
+      // String dateTime,
       String timeIn,
       String timeOut,
       String toolName,
@@ -116,7 +125,7 @@ class toolController {
     var accessToken = userProvider.accessToken;
 
     final Map<String, dynamic> updateData = {
-      "date_time": dateTime,
+      // "date_time": dateTime,
       "time_in": timeIn,
       "time_out": timeOut,
       "tool_name": toolName,
@@ -145,8 +154,8 @@ class toolController {
         await _AuthService.refreshToken(context);
         accessToken = userProvider.accessToken;
 
-        return await updatetool(context, dateTime, timeIn, timeOut, toolName,
-            userName, phone, objective, adviser, toolID);
+        return await updatetool(context, timeIn, timeOut, toolName, userName,
+            phone, objective, adviser, toolID);
       } else {
         return response;
       }

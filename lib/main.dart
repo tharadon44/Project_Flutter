@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:testlab/AddEquipmentPage.dart';
 import 'package:testlab/login_page.dart';
 import 'package:testlab/my_home_page.dart';
 import 'package:testlab/page/insertProduct.dart';
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
             '/home': (context) => UserPage(),
             '/login': (context) => LoginPage(),
             '/register': (context) => RegisterPage(),
-            '/register': (context) => RegisterPage(),
+            // '/register': (context) => RegisterPage(),
             '/admin': (context) => Adminpage(),
             '/inserttool': (context) => inserttool(),
+            '/AddEquipmentPage': (context) => AddEquipmentPage(),
           }),
     );
   }

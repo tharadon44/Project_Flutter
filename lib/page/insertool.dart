@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:testlab/controllers/tool_controllers.dart';
 import 'package:testlab/widget/custmCliper.dart';
 
-
 class inserttool extends StatefulWidget {
   @override
   _inserttoolState createState() => _inserttoolState();
@@ -13,7 +12,7 @@ class _inserttoolState extends State<inserttool> {
   final _formKey = GlobalKey<FormState>();
   final toolController _toolController =
       toolController(); // Create ProductController instance
-  String dateTime = '';
+  DateTime dateTime = DateTime.now();
   String timeIn = '';
   String timeOut = '';
   String toolName = '';
@@ -23,25 +22,25 @@ class _inserttoolState extends State<inserttool> {
   String adviser = '';
 
   // แยกฟังก์ชันสำหรับเพิ่มสินค้า
-  void _addNewProduct() {
+  void _addNewtool() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
       // บันทึกข้อมูลสินค้าใหม่โดยเรียกฟังก์ชัน insertProduct
       _toolController.Inserttool(
         context,
-        dateTime,
+        DateTime.now(),
         timeIn,
-        timeOut as String,
+        timeOut,
         toolName,
         userName,
         phone,
         objective,
         adviser,
-
-
       ).then((response) {
         // ตรวจสอบว่าการเพิ่มสินค้าสำเร็จหรือไม่
+        print(response.statusCode);
+
         if (response.statusCode == 201) {
           // Success action here (e.g. navigate back or show success message)
           ScaffoldMessenger.of(context).showSnackBar(
@@ -50,8 +49,10 @@ class _inserttoolState extends State<inserttool> {
           Navigator.pushReplacementNamed(context, '/admin');
         } else if (response.statusCode == 401) {
           // แสดงข้อความเมื่อเกิดข้อผิดพลาดในการเพิ่มสินค้า
+
           Navigator.pushNamedAndRemoveUntil(
               context, '/login', (route) => false);
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text('Refresh token expired. Please login again.')),
@@ -71,7 +72,6 @@ class _inserttoolState extends State<inserttool> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    var _addNewtool;
     return Scaffold(
       body: Container(
         height: height,
@@ -103,7 +103,7 @@ class _inserttoolState extends State<inserttool> {
               ),
             ),
             // Form content
-           Padding(
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
                 child: Column(
@@ -132,18 +132,18 @@ class _inserttoolState extends State<inserttool> {
                       key: _formKey,
                       child: Column(
                         children: <Widget>[
-                          _buildTextField(
-                            label: 'วันที่',
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'กรุณากรอกข้อมูล';
-                              }
-                              return null;
-                            },
-                            onSaved: (value) {
-                              dateTime = value!;
-                            },
-                          ),
+                          // _buildTextField(
+                          //   label: 'วันที่',
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'กรุณากรอกข้อมูล';
+                          //     }
+                          //     return null;
+                          //   },
+                          //   onSaved: (value) {
+                          //     dateTime = value! as DateTime;
+                          //   },
+                          // ),
                           SizedBox(height: 30),
                           _buildTextField(
                             label: 'เวลาเข้า',
@@ -172,7 +172,7 @@ class _inserttoolState extends State<inserttool> {
                           ),
                           SizedBox(height: 30),
                           _buildTextField(
-                            label: 'ห้อง',
+                            label: 'อุปกรณ์',
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'กรุณากรอกข้อมูล';
@@ -181,19 +181,6 @@ class _inserttoolState extends State<inserttool> {
                             },
                             onSaved: (value) {
                               toolName = value!;
-                            },
-                          ),
-                          SizedBox(height: 30),
-                          _buildTextField(
-                            label: 'ชื่อ',
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'กรุณากรอกข้อมูล';
-                              }
-                              return null;
-                            },
-                            onSaved: (value) {
-                              userName = value!;
                             },
                           ),
                           SizedBox(height: 30),
@@ -310,6 +297,7 @@ class _inserttoolState extends State<inserttool> {
       ),
     );
   }
+
   Widget _buildTextField({
     required String label,
     TextInputType? keyboardType,

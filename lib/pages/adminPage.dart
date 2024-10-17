@@ -15,6 +15,11 @@ class Adminpage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       home: const NavigationExample(),
+      routes: {
+        '/addTool': (context) => const AddtoolPage(),
+        '/addEquipment': (context) => const AddEquipmentPage(),
+        '/editTool': (context) => EdittoolPage(tool: ModalRoute.of(context)!.settings.arguments as UserTool),
+      },
     );
   }
 }
@@ -54,11 +59,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   }
 
   void deleteTool(UserTool tool) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => EdittoolPage(tool: tool),
-      ),
-    );
+    Navigator.of(context).pushNamed('/editTool', arguments: tool);
   }
 
   Future<void> deletetool(UserTool tool) async {
@@ -112,23 +113,9 @@ class _NavigationExampleState extends State<NavigationExample> {
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           if (index == 1) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const Adminpage(),
-              ),
-            );
+            Navigator.of(context).pushNamed('/addTool');
           } else if (index == 2) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const AddtoolPage(),
-              ),
-            );
-          } else if (index == 3) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const AddEquipmentPage(),
-              ),
-            );
+            Navigator.of(context).pushNamed('/addEquipment');
           } else {
             setState(() {
               currentPageIndex = index;
@@ -156,14 +143,11 @@ class _NavigationExampleState extends State<NavigationExample> {
       body: IndexedStack(
         index: currentPageIndex,
         children: [
-          /// Home Page - Showing tools
           isLoading
               ? const Center(child: CircularProgressIndicator())
               : errorMessage != null
                   ? Center(child: Text(errorMessage!))
                   : _buildtoolsList(),
-
-          /// Empty placeholder for AddtoolPage (เปิดผ่าน Navigator)
         ],
       ),
     );
@@ -194,7 +178,7 @@ class _NavigationExampleState extends State<NavigationExample> {
                     Text('วันที่: ${toolItem.dateTime}'),
                     Text('เวลาเข้า: ${toolItem.timeIn}'),
                     Text('เวลาออก: ${toolItem.timeOut}'),
-                    Text('ชื่อชื่ออุปกรณ์: ${toolItem.toolName}'),
+                    Text('ชื่ออุปกรณ์: ${toolItem.toolName}'),
                     Text('ชื่อผู้ใช้: ${toolItem.userName}'),
                     Text('เบอร์โทร: ${toolItem.phone}'),
                     Text('วัตถุประสงค์: ${toolItem.objective}'),

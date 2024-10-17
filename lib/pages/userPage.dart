@@ -188,42 +188,42 @@ class _UserPageState extends State<UserPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Consumer<UserProvider>(
-                      builder: (context, userProvider, _) {
-                        return Column(
-                          children: [
-                            Text('Access Token : ',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            Text('${userProvider.accessToken}',
-                                style: TextStyle(
-                                    fontSize: 16, color: Color(0xff821131))),
-                            SizedBox(height: 15),
-                            Text('Refresh Token : ',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            Text('${userProvider.refreshToken}',
-                                style: TextStyle(
-                                    fontSize: 16, color: Color(0xffFABC3F))),
-                            SizedBox(height: 20),
-                            ElevatedButton(
-                              onPressed: () {
-                                AuthService().refreshToken(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xff821131)),
-                              child: Text('Update Token',
-                                  style: TextStyle(color: Colors.white)),
-                            )
-                          ],
-                        );
-                      },
-                    ),
+                    // SizedBox(height: 20),
+                    // Consumer<UserProvider>(
+                    //   builder: (context, userProvider, _) {
+                    //     return Column(
+                    //       children: [
+                    //         Text('Access Token : ',
+                    //             style: TextStyle(
+                    //                 fontSize: 18,
+                    //                 color: Colors.black,
+                    //                 fontWeight: FontWeight.bold)),
+                    //         Text('${userProvider.accessToken}',
+                    //             style: TextStyle(
+                    //                 fontSize: 16, color: Color(0xff821131))),
+                    //         SizedBox(height: 15),
+                    //         Text('Refresh Token : ',
+                    //             style: TextStyle(
+                    //                 fontSize: 18,
+                    //                 color: Colors.black,
+                    //                 fontWeight: FontWeight.bold)),
+                    //         Text('${userProvider.refreshToken}',
+                    //             style: TextStyle(
+                    //                 fontSize: 16, color: Color(0xffFABC3F))),
+                    //         SizedBox(height: 20),
+                    //         ElevatedButton(
+                    //           onPressed: () {
+                    //             AuthService().refreshToken(context);
+                    //           },
+                    //           style: ElevatedButton.styleFrom(
+                    //               backgroundColor: const Color(0xff821131)),
+                    //           child: Text('Update Token',
+                    //               style: TextStyle(color: Colors.white)),
+                    //         )
+                    //       ],
+                    //     );
+                    //   },
+                    // ),
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
